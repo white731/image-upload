@@ -4,12 +4,12 @@ import { AuthContext } from "../providers/AuthProvider"
 
 const User = () => {
 
-  const {email, name} = useContext(AuthContext)
+  const {email, name, image} = useContext(AuthContext)
 
   return(
   <>
   <Card>
-    <Image src="https://picsum.photos/200/300"/>
+    <Image src={image}/>
     <Card.Content>
       <Card.Header>
         <CardContent description={name}/>

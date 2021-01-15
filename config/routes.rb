@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :things
     resources :users
+    put 'basic_upload', to: 'users#basic_upload'
+    put 'update_user_image', to: 'users#update_user_image'
   end
 
 end

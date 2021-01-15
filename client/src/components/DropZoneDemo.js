@@ -1,9 +1,26 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useContext} from 'react'
 import {useDropzone} from 'react-dropzone'
+import axios from "axios"
+import {AuthContext} from '../providers/AuthProvider'
+
 function DropZoneDemo() {
+
+  const {setUser} =useContext(AuthContext)
+
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     console.log("acceptedFiles ",acceptedFiles)
+    let data = new FormData()
+    data.append('file', acceptedFiles[0])
+    axios.put('/api/update_user_image', data)
+    .then((res)=>{
+      // debugger
+      setUser(res.data.user)
+    })
+    .catch((err)=> {
+      debugger
+    })
+
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
  
